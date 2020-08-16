@@ -51,6 +51,7 @@ export default function NewListModal({handleItemAdd}){
                   style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
                   onPress={() => {
                     dispatch(addList({id: uuidv4(), name: modalValue, color:'red'}))
+                    setModalValue('');
                     dispatch(toggleShowAddModal());
                   }}
                 >

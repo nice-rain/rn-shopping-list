@@ -51,7 +51,9 @@ const shoppingListReducer = (state = initialState, action) =>{
         case actions.TOGGLE_SHOW_ADD_MODAL:
             return {...state, addModalIsVisible: !state.addModalIsVisible };
         case actions.ADD_LIST:
-            return {...state, shoppingLists: insertItem(state.shoppingLists, action)}
+            return {...state, shoppingLists: insertItem(state.shoppingLists, action)};
+        case actions.REMOVE_LIST:
+            return {...state, shoppingLists: removeItem(state.shoppingLists, action)}        
         default:
             return state;
     }

@@ -3,6 +3,7 @@ import {useDispatch} from 'react-redux';
 import {View, TouchableOpacity, Text, StyleSheet, Alert} from 'react-native';
 import GlobalStyles from '../styles/GlobalStyles';
 import Colors from '../styles/Colors';
+import {removeList} from '../store/actions/actions';
 
 
 //Button that shows up on home screen
@@ -29,7 +30,7 @@ export default function ShoppingListButton({name, color, navigation, index})
           // onPress: () => console.log("Cancel Pressed"),
           style: "cancel"
         },
-        { text: "OK", onPress: () => console.log("OK Pressed") }
+        { text: "OK", onPress: () => dispatch(removeList(index))}
       ],
       { cancelable: false }
     );        
