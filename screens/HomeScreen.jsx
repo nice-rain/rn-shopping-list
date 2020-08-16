@@ -22,9 +22,9 @@ export default function HomeScreen({navigation})
   }
 
   return(
-  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+  <View style={styles.screen}>
     <NewListModal/>
-    <FlatList data={shoppingLists} renderItem={renderListItem} />
+    <FlatList data={shoppingLists} renderItem={renderListItem} style={{flex:1, backgroundColor:'blue'}}/>
   </View>
   )
 }
@@ -33,12 +33,9 @@ export default function HomeScreen({navigation})
 const styles = StyleSheet.create({
     screen:{
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
+        justifyContent:"flex-start"
     },
-    gridItem:{
+    list:{
         flex:1,
-        margin:15,
-        marginVertical: 40
     }
 })

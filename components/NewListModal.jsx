@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import {View, Modal, TouchableHighlight, Alert, StyleSheet, Text, TextInput} from 'react-native'
 import {toggleShowAddModal, addList} from '../store/actions/actions';
 
+import GlobalStyles from '../styles/GlobalStyles';
 
 export default function NewListModal({handleItemAdd}){
 
@@ -21,7 +22,6 @@ export default function NewListModal({handleItemAdd}){
     }
 
     return (
-        <View style={styles.centeredView}>
           <Modal
             animationType="slide"
             transparent={true}
@@ -32,7 +32,7 @@ export default function NewListModal({handleItemAdd}){
           >
             <View style={styles.centeredView}>
               <View style={styles.modalView}>
-                <Text style={styles.modalText}>Hello World!</Text>
+                <Text style={GlobalStyles.text}>Hello World!</Text>
             
                 <TextInput onChange={updateModalValue}
                     value={modalValue} />
@@ -44,7 +44,7 @@ export default function NewListModal({handleItemAdd}){
                     dispatch(toggleShowAddModal());
                   }}
                 >
-                  <Text style={styles.textStyle}>Cancel</Text>
+                  <Text style={GlobalStyles.text}>Cancel</Text>
                 </TouchableHighlight>
 
                 <TouchableHighlight
@@ -54,12 +54,11 @@ export default function NewListModal({handleItemAdd}){
                     dispatch(toggleShowAddModal());
                   }}
                 >
-                  <Text style={styles.textStyle}>Add</Text>
+                  <Text style={GlobalStyles.text}>Add</Text>
                 </TouchableHighlight>
               </View>
             </View>
           </Modal>
-        </View>
     );
 }
 

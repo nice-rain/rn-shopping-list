@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {View, TouchableOpacity, Text, StyleSheet} from 'react-native';
-
+import GlobalStyles from '../styles/GlobalStyles';
 
 //Button that shows up on home screen
 export default function ShoppingListButton({name, color, navigation})
@@ -14,7 +14,7 @@ export default function ShoppingListButton({name, color, navigation})
     return (
         <TouchableOpacity style={styles.item} onPress={handleNavigation}>
             <View style={styles.button}>
-                <Text>{name}</Text>
+                <Text style={GlobalStyles.text}>{name}</Text>
             </View>
         </TouchableOpacity>
     )
@@ -22,6 +22,8 @@ export default function ShoppingListButton({name, color, navigation})
 
 const styles = StyleSheet.create({
     item:{
+        backgroundColor:'grey',
+        flex:1
     },
     button:{
     }
