@@ -1,7 +1,16 @@
 import React from 'react';
-import {View, Modal, TouchableHighlight, Alert, StyleSheet} from 'react-native'
+import {useSelector, useDispatch} from 'react-redux';
+import {View, Modal, TouchableHighlight, Alert, StyleSheet, Text} from 'react-native'
 
-export default function NewListModal({modalVisible, handleItemAdd}){
+import {toggleShowAddModal} from '../store/actions/actions';
+
+
+export default function NewListModal({handleItemAdd}){
+
+    //Redux
+    const modalVisible = useSelector(state => state.addModalIsVisible);
+
+    const dispatch = useDispatch();
 
     return (
         <View style={styles.centeredView}>
@@ -20,7 +29,7 @@ export default function NewListModal({modalVisible, handleItemAdd}){
                 <TouchableHighlight
                   style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
                   onPress={() => {
-                    setModalVisible(!modalVisible);
+                    dispatch(toggleShowAddModal());
                   }}
                 >
                   <Text style={styles.textStyle}>Hide Modal</Text>
@@ -28,15 +37,6 @@ export default function NewListModal({modalVisible, handleItemAdd}){
               </View>
             </View>
           </Modal>
-    
-          <TouchableHighlight
-            style={styles.openButton}
-            onPress={() => {
-              setModalVisible(true);
-            }}
-          >
-            <Text style={styles.textStyle}>Show Modal</Text>
-          </TouchableHighlight>
         </View>
     );
 
