@@ -6,7 +6,14 @@ import Colors from './Colors';
 const GlobalStyles = StyleSheet.create({
     text:{
         color: Colors.light.font
+    },
+    headerTitle:{
+        color: Colors.light.headerText
+    },
+    headerStyle:{
+        backgroundColor: Colors.light.primary
     }
+
 });
 
 export default GlobalStyles;

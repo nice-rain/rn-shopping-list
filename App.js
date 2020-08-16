@@ -3,6 +3,8 @@ import React, {useState} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import {createStore, combineReducers} from 'redux';
 import {Provider, useDispatch} from 'react-redux';
+import GlobalStyles from './styles/GlobalStyles';
+import Colors from './styles/Colors';
 
 //Screens
 import HomeScreen from './screens/HomeScreen';
@@ -50,7 +52,13 @@ function App() {
 
   return (
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator
+          screenOptions={{
+            headerTitleStyle: {...GlobalStyles.headerTitle},
+            headerTintColor: Colors.light.headerText,
+            headerStyle:{...GlobalStyles.headerStyle}
+          }}
+          >
           <Stack.Screen 
             name="Home" 
             component={HomeScreen}
