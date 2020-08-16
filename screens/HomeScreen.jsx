@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, StyleSheet, FlatList} from 'react-native';
 
+import NewListModal from '../components/NewListModal';
 
 import ShoppingListButton from '../components/ShoppingListButton';
 
@@ -22,6 +23,9 @@ const SHOPPINGLISTS = [
 export default function HomeScreen({navigation})
 {
 
+      //State for modal
+     const [modalVisible, setModalVisible] = useState(false);
+
     //Render individual shopping list buttons (Add render inside to gain access to navigation)
     const renderListItem = (itemData) =>{
 
@@ -33,6 +37,7 @@ export default function HomeScreen({navigation})
 
     return(
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <NewListModal modalVisible={modalVisible}/>
       <FlatList data={SHOPPINGLISTS} renderItem={renderListItem} />
     </View>
     )
