@@ -72,7 +72,10 @@ function App() {
             }} />
           <Stack.Screen 
             name="List" 
-            component={ListScreen} />
+            component={ListScreen}
+             // By declaring as a function, we can pass params in through our route object
+            options={({route}) => ({title: route.params.title})}
+             />
         </Stack.Navigator>
       </NavigationContainer>
   );
