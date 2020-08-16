@@ -6,6 +6,7 @@ import Button from '../components/Button';
 
 import GlobalStyles from '../styles/GlobalStyles';
 import Colors from '../styles/Colors';
+import ShoppingListItem from '../components/ShoppingListItem';
 
 export default function ListScreen(props)
 {
@@ -18,13 +19,16 @@ export default function ListScreen(props)
         setNewItemValue(e.nativeEvent.value);
     }
 
-
-    console.log('re-rendered');
+    //Render individual shopping list buttons (Add render inside to gain access to navigation)
+    const renderListItem = (itemData) =>{
+        return(
+            <ShoppingListItem name={itemData.item.name} listId={itemData.item.id} selected={itemData.item.selected} index={itemData.index} />
+        )
+    }
 
     return(
         <View style={{flex:1}}>
-            <FlatList style={{flex:1}}/>
-            <Text styles={GlobalStyles.text}>List Screen</Text>
+            <FlatList data={listItems} renderItem={renderListItem} style={{flex:1}}/>
             <View style={styles.addMenu}>
                 <TextInput value={newItemValue} onChange={updateNewItemValue} placeholder="Add Item" style={styles.newItemInput}/>
                 <Button onPress={()=>console.log(listItems)}>Add</Button>
