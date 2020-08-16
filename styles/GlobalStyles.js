@@ -22,6 +22,13 @@ const GlobalStyles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         elevation: 5
+    },
+    button:{
+        backgroundColor:Colors.light.primary,
+        padding:5,
+    },
+    buttonText:{
+        color: 'white'
     }
 });
 

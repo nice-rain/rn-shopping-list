@@ -7,7 +7,7 @@ import {removeList} from '../store/actions/actions';
 
 
 //Button that shows up on home screen
-export default function ShoppingListButton({name, color, navigation, index})
+export default function ShoppingListButton({name, color, navigation, index, listId})
 {
 
   //Redux
@@ -15,7 +15,7 @@ export default function ShoppingListButton({name, color, navigation, index})
   const dispatch = useDispatch();
 
   const handleNavigation = () =>{
-    navigation.navigate('List', {title:name, color})
+    navigation.navigate('List', {title:name, color, listId})
   }
 
 

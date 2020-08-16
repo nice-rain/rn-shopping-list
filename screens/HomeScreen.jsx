@@ -17,7 +17,7 @@ export default function HomeScreen({navigation})
   //Render individual shopping list buttons (Add render inside to gain access to navigation)
   const renderListItem = (itemData) =>{
     return(
-      <ShoppingListButton name={itemData.item.name} index={itemData.index} navigation={navigation} />
+      <ShoppingListButton name={itemData.item.name} listId={itemData.item.id} index={itemData.index} navigation={navigation} />
     )
   }
 

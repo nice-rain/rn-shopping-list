@@ -13,9 +13,8 @@ const initialState = {
             color: 'orange'
         }
     ],
-    listItems: [{
-        key: 'L1',
-        items:[{
+    listItems: {
+        'l1':[{
                 id: 'I1',
                 name:'toilet paper',
                 selected: false
@@ -24,8 +23,9 @@ const initialState = {
                 id:'I2',
                 name:'vitamin D',
                 selected: true
-            }]
-    }],
+            }],
+            
+    },
     addModalIsVisible:false
 }
 
