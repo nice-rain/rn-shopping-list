@@ -54,9 +54,9 @@ function App() {
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{
-            headerTitleStyle: {...GlobalStyles.headerTitle},
+            headerTitleStyle: GlobalStyles.headerTitle,
             headerTintColor: Colors.light.headerText,
-            headerStyle:{...GlobalStyles.headerStyle}
+            headerStyle: GlobalStyles.headerStyle
           }}
           >
           <Stack.Screen 

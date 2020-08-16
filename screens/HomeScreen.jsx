@@ -17,14 +17,14 @@ export default function HomeScreen({navigation})
   //Render individual shopping list buttons (Add render inside to gain access to navigation)
   const renderListItem = (itemData) =>{
     return(
-      <ShoppingListButton name={itemData.item.name} navigation={navigation} />
+      <ShoppingListButton name={itemData.item.name} index={itemData.index} navigation={navigation} />
     )
   }
 
   return(
   <View style={styles.screen}>
     <NewListModal/>
-    <FlatList data={shoppingLists} renderItem={renderListItem} style={{flex:1, backgroundColor:'blue'}}/>
+    <FlatList data={shoppingLists} renderItem={renderListItem} style={styles.list}/>
   </View>
   )
 }
