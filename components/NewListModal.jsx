@@ -1,16 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {View, Modal, TouchableHighlight, Alert, StyleSheet, Text} from 'react-native'
-
-import {toggleShowAddModal} from '../store/actions/actions';
+import { v4 as uuidv4 } from 'uuid';
+import {View, Modal, TouchableHighlight, Alert, StyleSheet, Text, TextInput} from 'react-native'
+import {toggleShowAddModal, addList} from '../store/actions/actions';
 
 
 export default function NewListModal({handleItemAdd}){
 
     //Redux
     const modalVisible = useSelector(state => state.addModalIsVisible);
-
     const dispatch = useDispatch();
+
+    const [modalValue, setModalValue] = useState('');
+
+    //We use e.nativeEvent instead of e.target
+    const updateModalValue = e =>{
+        if(e && e.nativeEvent){
+            setModalValue(e.nativeEvent.text);
+        }
+    }
 
     return (
         <View style={styles.centeredView}>
@@ -25,21 +33,34 @@ export default function NewListModal({handleItemAdd}){
             <View style={styles.centeredView}>
               <View style={styles.modalView}>
                 <Text style={styles.modalText}>Hello World!</Text>
-    
+            
+                <TextInput onChange={updateModalValue}
+                    value={modalValue} />
+                
                 <TouchableHighlight
                   style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
                   onPress={() => {
+                    setModalValue('');
                     dispatch(toggleShowAddModal());
                   }}
                 >
-                  <Text style={styles.textStyle}>Hide Modal</Text>
+                  <Text style={styles.textStyle}>Cancel</Text>
+                </TouchableHighlight>
+
+                <TouchableHighlight
+                  style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
+                  onPress={() => {
+                    dispatch(addList({id: uuidv4(), name: modalValue, color:'red'}))
+                    dispatch(toggleShowAddModal());
+                  }}
+                >
+                  <Text style={styles.textStyle}>Add</Text>
                 </TouchableHighlight>
               </View>
             </View>
           </Modal>
         </View>
     );
-
 }
 
 const styles = StyleSheet.create({

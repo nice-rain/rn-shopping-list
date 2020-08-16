@@ -1,4 +1,4 @@
-import { TOGGLE_SHOW_ADD_MODAL } from "../actions/actions";
+import * as actions  from "../actions/actions";
 
 const initialState = {
     shoppingLists: [
@@ -29,14 +29,29 @@ const initialState = {
     addModalIsVisible:false
 }
 
+
+//Helpers
+function insertItem(array, action) {
+    let newArray = array.slice()
+    newArray.splice(action.index, 0, action.item)
+    return newArray
+  }
+  
+  function removeItem(array, action) {
+    let newArray = array.slice()
+    newArray.splice(action.index, 1)
+    return newArray
+  }
+
+
+//Reducer
 const shoppingListReducer = (state = initialState, action) =>{
 
-
     switch(action.type){
-        case TOGGLE_SHOW_ADD_MODAL:
-            const existingModalVisible = state.addModalIsVisible;
-            return {...state, addModalIsVisible: !state.addModalIsVisible }
-            
+        case actions.TOGGLE_SHOW_ADD_MODAL:
+            return {...state, addModalIsVisible: !state.addModalIsVisible };
+        case actions.ADD_LIST:
+            return {...state, shoppingLists: insertItem(state.shoppingLists, action)}
         default:
             return state;
     }

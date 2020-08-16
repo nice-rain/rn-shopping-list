@@ -11,13 +11,13 @@ import ListScreen from './screens/ListScreen';
 //Navigation
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import CustomHeaderButton from './components/CustomHeaderButton';
-
 import shoppingListReducer from './store/reducers/shoppingListReducer';
-
 import {toggleShowAddModal} from './store/actions/actions';
+
+import 'react-native-get-random-values';
+
 
 //Create our navigation stack
 const Stack = createStackNavigator();
