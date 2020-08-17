@@ -52,6 +52,14 @@ function updateListItems(listItems, action){
     return {...listItems}
 }
 
+function removeListItems(listItems, action){
+
+  const currentListItem = listItems[action.listId];
+  listItems[action.listId] = removeItem(currentListItem, action);
+
+    return {...listItems}
+}
+
 function toggleSelection(listItems, action)
 {
 
@@ -60,12 +68,6 @@ function toggleSelection(listItems, action)
 
   //Update our selected key
   currentListItem[action.index].selected = !currentListItem[action.index].selected;
-
-  //Copy to a new object
-  const updatedItems = {...listItems, currentListItem};
-
-  //console.log(updatedItems);
-
 
   return {...listItems, currentListItem};
 }
@@ -82,6 +84,8 @@ const shoppingListReducer = (state = initialState, action) =>{
             return {...state, shoppingLists: removeItem(state.shoppingLists, action)};
         case actions.ADD_LIST_ITEM:
             return {...state, listItems: updateListItems(state.listItems, action)};
+        case actions.REMOVE_LIST_ITEM:
+            return {...state, listItems: removeListItems(state.listItems, action)};
         case actions.TOGGLE_ITEM_SELECT:
             return {...state, listItems: toggleSelection(state.listItems, action)};
         default:
