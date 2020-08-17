@@ -46,10 +46,7 @@ function insertItem(array, action) {
 
   function updateListItems(listItems, action){
 
-
     const currentListItem = listItems[action.listId];
-    const listItems2 = {...listItems};
-
     listItems[action.listId] = insertItem(currentListItem, action);
 
       return {...listItems}
