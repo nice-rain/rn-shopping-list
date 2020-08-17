@@ -21,7 +21,8 @@ const GlobalStyles = StyleSheet.create({
         },
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
-        elevation: 5
+        elevation: 5,
+        backgroundColor:"#0000"
     },
     button:{
         backgroundColor:Colors.light.primary,

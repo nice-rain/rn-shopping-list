@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, FlatList, TextInput, TouchableOpacity, StyleSheet} from 'react-native';
+import {View, FlatList, TextInput, Keyboard, StyleSheet} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -23,6 +23,7 @@ export default function ListScreen(props)
     const handleAddItem = () =>{
         if(newItemValue.length)
         {
+            Keyboard.dismiss();
             dispatch(addListItem({id: uuidv4(), name: newItemValue, selected:false}, listId));
             setNewItemValue('');
         }
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
     },
     itemList:{
         flex:1,
-        paddingHorizontal:20,
+        paddingHorizontal:10,
         paddingVertical:10
     }
 })
