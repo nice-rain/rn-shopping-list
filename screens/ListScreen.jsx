@@ -32,7 +32,7 @@ export default function ListScreen(props)
     //Render individual shopping list buttons (Add render inside to gain access to navigation)
     const renderListItem = (itemData) =>{
         return(
-            <ShoppingListItem name={itemData.item.name} listId={itemData.item.id} selected={itemData.item.selected} index={itemData.index} />
+            <ShoppingListItem name={itemData.item.name} listId={listId} selected={itemData.item.selected} index={itemData.index} />
         )
     }
 
