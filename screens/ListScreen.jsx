@@ -35,11 +35,9 @@ export default function ListScreen(props)
         )
     }
 
-    console.log(newItemValue);
-
     return(
         <View style={{flex:1}}>
-            <FlatList data={listItems} renderItem={renderListItem} style={{flex:1}}/>
+            <FlatList data={listItems} renderItem={renderListItem} style={styles.itemList}/>
             <View style={styles.addMenu}>
                 <TextInput value={newItemValue} onChange={updateNewItemValue} placeholder="Add Item" style={styles.newItemInput}/>
                 <Button onPress={handleAddItem}>Add</Button>
@@ -59,5 +57,10 @@ const styles = StyleSheet.create({
         flex:1,
         borderBottomColor: Colors.light.listBorder,
         padding:0
+    },
+    itemList:{
+        flex:1,
+        paddingHorizontal:20,
+        paddingVertical:10
     }
 })
