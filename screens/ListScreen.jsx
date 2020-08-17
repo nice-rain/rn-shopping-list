@@ -20,6 +20,14 @@ export default function ListScreen(props)
         }
     }
 
+    const handleAddItem = () =>{
+        if(newItemValue.length)
+        {
+            dispatch(addListItem({id: uuidv4(), name: newItemValue, selected:false}, listId));
+            setNewItemValue('');
+        }
+    }
+
     //Render individual shopping list buttons (Add render inside to gain access to navigation)
     const renderListItem = (itemData) =>{
         return(
@@ -34,7 +42,7 @@ export default function ListScreen(props)
             <FlatList data={listItems} renderItem={renderListItem} style={{flex:1}}/>
             <View style={styles.addMenu}>
                 <TextInput value={newItemValue} onChange={updateNewItemValue} placeholder="Add Item" style={styles.newItemInput}/>
-                <Button onPress={()=>dispatch(addListItem({id: uuidv4(), name: newItemValue, selected:false}, listId))}>Add</Button>
+                <Button onPress={handleAddItem}>Add</Button>
             </View>
         </View>
     )

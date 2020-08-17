@@ -22,9 +22,6 @@ export const addList = (item) =>{
 
 //Item requires id, name, color
 export const addListItem = (item, listId) =>{
-
-    console.log(item);
-
     return{
         type: ADD_LIST_ITEM,
         listId,
