@@ -2,6 +2,9 @@ export const TOGGLE_SHOW_ADD_MODAL = 'TOGGLE_SHOW_MODAL';
 export const ADD_LIST = 'ADD_LIST';
 export const REMOVE_LIST = 'REMOVE_LIST';
 
+export const ADD_LIST_ITEM = 'ADD_LIST_ITEM';
+
+
 
 export const toggleShowAddModal = () =>{
     return {
@@ -13,6 +16,18 @@ export const toggleShowAddModal = () =>{
 export const addList = (item) =>{
     return{
         type: ADD_LIST,
+        item:item
+    }
+}
+
+//Item requires id, name, color
+export const addListItem = (item, listId) =>{
+
+    console.log(item);
+
+    return{
+        type: ADD_LIST_ITEM,
+        listId,
         item:item
     }
 }

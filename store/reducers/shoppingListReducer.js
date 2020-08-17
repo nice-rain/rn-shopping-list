@@ -32,7 +32,8 @@ const initialState = {
 
 //Helpers
 function insertItem(array, action) {
-    let newArray = array.slice()
+    
+    let newArray = array ? array.slice() : [];
     newArray.splice(action.index, 0, action.item)
     return newArray
   }
@@ -41,6 +42,17 @@ function insertItem(array, action) {
     let newArray = array.slice()
     newArray.splice(action.index, 1)
     return newArray
+  }
+
+  function updateListItems(listItems, action){
+
+
+    const currentListItem = listItems[action.listId];
+    const listItems2 = {...listItems};
+
+    listItems[action.listId] = insertItem(currentListItem, action);
+
+      return {...listItems}
   }
 
 
@@ -53,7 +65,9 @@ const shoppingListReducer = (state = initialState, action) =>{
         case actions.ADD_LIST:
             return {...state, shoppingLists: insertItem(state.shoppingLists, action)};
         case actions.REMOVE_LIST:
-            return {...state, shoppingLists: removeItem(state.shoppingLists, action)}        
+            return {...state, shoppingLists: removeItem(state.shoppingLists, action)};
+        case actions.ADD_LIST_ITEM:
+            return {...state, listItems: updateListItems(state.listItems, action)};
         default:
             return state;
     }
