@@ -7,6 +7,7 @@ import {createStore, combineReducers} from 'redux';
 import {Provider, useDispatch} from 'react-redux';
 
 //Simple local storage library to store and persist redux
+//* This library is not as fast as a local database like realm, but it works for a small app.
 import { persistStore, persistReducer } from 'redux-persist';
 
 //Library needed for redux-persist to work with react native
