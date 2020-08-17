@@ -1,8 +1,9 @@
 export const TOGGLE_SHOW_ADD_MODAL = 'TOGGLE_SHOW_MODAL';
 export const ADD_LIST = 'ADD_LIST';
 export const REMOVE_LIST = 'REMOVE_LIST';
-
 export const ADD_LIST_ITEM = 'ADD_LIST_ITEM';
+
+export const TOGGLE_ITEM_SELECT = 'TOGGLE_ITEM_SELECT';
 
 
 
@@ -26,6 +27,14 @@ export const addListItem = (item, listId) =>{
         type: ADD_LIST_ITEM,
         listId,
         item:item
+    }
+}
+
+export const toggleItemSelect = (listId, index) =>{
+    return{
+        type:TOGGLE_ITEM_SELECT,
+        listId,
+        index
     }
 }
 
