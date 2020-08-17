@@ -4,6 +4,9 @@ import { v4 as uuidv4 } from 'uuid';
 import {View, Modal, TouchableHighlight, Alert, StyleSheet, Text, TextInput} from 'react-native'
 import {toggleShowAddModal, addList} from '../store/actions/actions';
 
+import Button from '../components/Button';
+
+import Colors from '../styles/Colors';
 import GlobalStyles from '../styles/GlobalStyles';
 
 export default function NewListModal({handleItemAdd}){
@@ -21,6 +24,17 @@ export default function NewListModal({handleItemAdd}){
         }
     }
 
+    //Check to make sure our item exists
+    const handleAddItem = () =>{
+      if(modalValue.length)
+      {
+          dispatch(addList({id: uuidv4(), name: modalValue, color:'red'}));
+          setModalValue('');
+          dispatch(toggleShowAddModal());
+
+      }
+  }
+
     return (
           <Modal
             animationType="slide"
@@ -32,31 +46,31 @@ export default function NewListModal({handleItemAdd}){
           >
             <View style={styles.centeredView}>
               <View style={styles.modalView}>
-                <Text style={GlobalStyles.text}>Hello World!</Text>
-            
+                <Text style={{...GlobalStyles.text, ...styles.headingText}}>Add New List</Text>
                 <TextInput onChange={updateModalValue}
-                    value={modalValue} />
+                    value={modalValue} 
+                    placeholder={'List Name'}
+                    style={styles.input} />
                 
-                <TouchableHighlight
-                  style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
-                  onPress={() => {
-                    setModalValue('');
-                    dispatch(toggleShowAddModal());
-                  }}
-                >
-                  <Text style={GlobalStyles.text}>Cancel</Text>
-                </TouchableHighlight>
+                <View style={styles.buttonView}>
+                  <Button
+                    style={{backgroundColor: "#2196F3" }}
+                    onPress={() => {
+                      setModalValue('');
+                      dispatch(toggleShowAddModal());
+                    }}
+                  >
+                    Cancel
+                  </Button>
 
-                <TouchableHighlight
-                  style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
-                  onPress={() => {
-                    dispatch(addList({id: uuidv4(), name: modalValue, color:'red'}))
-                    setModalValue('');
-                    dispatch(toggleShowAddModal());
-                  }}
-                >
-                  <Text style={GlobalStyles.text}>Add</Text>
-                </TouchableHighlight>
+                  <Button
+                    style={{backgroundColor: "#2196F3" }}
+                    onPress={handleAddItem}
+                  >
+                    Add
+                  </Button>
+                </View>
+
               </View>
             </View>
           </Modal>
@@ -72,8 +86,10 @@ const styles = StyleSheet.create({
     },
     modalView: {
       margin: 20,
+      width: '80%',
+      maxWidth: 500,
       backgroundColor: "white",
-      borderRadius: 20,
+      borderRadius: 2,
       padding: 35,
       alignItems: "center",
       shadowColor: "#000",
@@ -99,5 +115,25 @@ const styles = StyleSheet.create({
     modalText: {
       marginBottom: 15,
       textAlign: "center"
-    }
+    },
+    buttonView:{
+      flexDirection:'row',
+      justifyContent:'space-evenly',
+      alignItems:'center',
+      width:'100%'
+    },
+    input:{
+      borderBottomColor:Colors.light.font,
+      borderBottomWidth:1,
+      width: '80%',
+      maxWidth: 500,
+      marginTop:10,
+      marginBottom:20
+    },
+    //Note: This should be a global style if we were going to reuse it
+    headingText:{
+      fontSize: 18,
+      fontWeight:"bold"
+    } 
+    
   });
