@@ -1,8 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+
+//Redux
 import {createStore, combineReducers} from 'redux';
 import {Provider, useDispatch} from 'react-redux';
+
+//Simple local storage library to store and persist redux
+import { persistStore, persistReducer } from 'redux-persist';
+
+//Library needed for redux-persist to work with react native
+import AsyncStorage from '@react-native-community/async-storage';
+
+//Used to force react-native to wait until storage has 100% loaded
+import { PersistGate } from 'redux-persist/integration/react';
+ 
+
 import GlobalStyles from './styles/GlobalStyles';
 import Colors from './styles/Colors';
 
@@ -24,17 +37,24 @@ import 'react-native-get-random-values';
 //Create our navigation stack
 const Stack = createStackNavigator();
 
-//* If you use combined reducer. You just select with the reducer key as the first value
-//* For example, if the key was 'test', you would select state.test.ReducerKey
-// const rootReducer = combineReducers({
-//   test:testReducer
-// })
+
+const persistConfig = {
+  key: 'root',
+  storage: AsyncStorage,
+}
+ 
+const persistedReducer = persistReducer(persistConfig, shoppingListReducer)
 
 //Using a wrapper allows us to use dispatch within our App component. This way we can dispatch from navigator.
 const ProviderWrapper = () =>{
-  const store = createStore(shoppingListReducer);
+  const store = createStore(persistedReducer);
+  let persistor = persistStore(store);
   return <Provider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+
     <App/>
+    </PersistGate>
+
   </Provider>
 }
 
