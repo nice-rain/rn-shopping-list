@@ -36,9 +36,13 @@ export default function ListScreen(props)
         )
     }
 
+    //Uncomment this to add to bottom
+    //const flatListItems = listItems.slice().reverse()
+
+
     return(
         <View style={{flex:1}}>
-            <FlatList data={listItems} renderItem={renderListItem} style={styles.itemList}/>
+            <FlatList data={listItems} renderItem={renderListItem}  style={styles.itemList} contentContainerStyle={{paddingVertical:10}} />
             <View style={styles.addMenu}>
                 <TextInput value={newItemValue} onChange={updateNewItemValue} placeholder="Add Item" style={styles.newItemInput}/>
                 <Button onPress={handleAddItem}>Add</Button>
@@ -52,7 +56,7 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         padding:10,
         borderTopColor: Colors.light.listBorder,
-        borderTopWidth:1
+        borderTopWidth:1,
     },
     newItemInput:{
         flex:1,
@@ -62,6 +66,5 @@ const styles = StyleSheet.create({
     itemList:{
         flex:1,
         paddingHorizontal:10,
-        paddingVertical:10
-    }
+        }
 })
